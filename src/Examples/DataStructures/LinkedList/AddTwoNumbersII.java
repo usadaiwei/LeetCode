@@ -18,9 +18,9 @@ public class AddTwoNumbersII {
         if(l2 == null){
             return l1;
         }
-        Stack<Integer> s = new Stack<Integer>();
-        Stack<ListNode> s1 = new Stack<ListNode>();
-        Stack<ListNode> s2 = new Stack<ListNode>();
+        Stack<Integer> s = new Stack<>();
+        Stack<ListNode> s1 = new Stack<>();
+        Stack<ListNode> s2 = new Stack<>();
         // int carry
         int c = 0;
         // add l1, l2 to Stack s1, s2, then they will come out in reverse sequence
