@@ -1,4 +1,4 @@
-package Examples.Algorithms.Algorithm;
+package Examples.Algorithms.Sorting;
 
 /* Quick Sort: Find a mid, put smaller elements to its left side, put larger elements to its right side.
  Left: point to the first element of array
