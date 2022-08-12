@@ -1,4 +1,4 @@
-package Examples.Algorithms.Sorting;
+package Examples.Algorithms.SortingAndSearching;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;

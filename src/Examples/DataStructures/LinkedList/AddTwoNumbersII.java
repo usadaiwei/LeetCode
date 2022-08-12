@@ -5,6 +5,7 @@ import utils.ListNode;
 import java.util.Stack;
 
 /* Add Two Numbers II (Medium)
+   carry is added in a reverse sequence, so we need to use stack.
    Input: (7 -> 2 -> 4 -> 3 -> null) + (5 -> 6 -> 4 -> null)
    Output: 7 -> 8 -> 0 -> 7 -> null
  */

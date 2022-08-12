@@ -1,4 +1,4 @@
-package Examples.Algorithms.Sorting;
+package Examples.Algorithms.SortingAndSearching;
 
 /* Sort Colors (Medium)
 Input: [2,0,2,1,1,0]

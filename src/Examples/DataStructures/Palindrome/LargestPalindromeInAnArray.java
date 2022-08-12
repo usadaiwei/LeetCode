@@ -1,4 +1,4 @@
-package Examples.DataStructures.ArrayList;
+package Examples.DataStructures.Palindrome;
 
 import java.util.*;
 
