@@ -33,11 +33,13 @@ public class BinaryTreeLevelOrderTraversal {
         List<List<Integer>> ans = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
 
+        // 先加root进queue
         queue.add(root);
 
         while (!queue.isEmpty()){
             List<Integer> list = new ArrayList<>();
 
+            // 用Queue 先进先出, 存储每个root, 如果root == null, while loop结束
             int levelSize = queue.size();
 
             for (int i = 0; i < levelSize; i++){

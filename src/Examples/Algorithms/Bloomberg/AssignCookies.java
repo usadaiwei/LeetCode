@@ -1,4 +1,4 @@
-package Examples.Algorithms.Greedy;
+package Examples.Algorithms.Bloomberg;
 
 import java.util.Arrays;
 

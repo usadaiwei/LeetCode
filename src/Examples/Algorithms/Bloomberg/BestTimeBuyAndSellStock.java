@@ -1,4 +1,4 @@
-package Examples.Algorithms.Greedy;
+package Examples.Algorithms.Bloomberg;
 
 /*
 Best Time to Buy and Sell Stock (Easy)
