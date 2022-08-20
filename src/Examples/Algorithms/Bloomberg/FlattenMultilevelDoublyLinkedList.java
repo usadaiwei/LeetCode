@@ -38,7 +38,7 @@ public class FlattenMultilevelDoublyLinkedList {
         while (curr != null){
             if (curr.child != null)
                 attach(curr);
-            curr = curr.next;
+            curr = curr.next; // child 会变成next, 所以一直向后移就好了
         }
         return pre;
     }
@@ -52,9 +52,11 @@ public class FlattenMultilevelDoublyLinkedList {
         A.next = B;
         B.prev = A;
         C.next = D;
-        if (D != null)
+
+        if (D != null)  // D might be null
             D.prev = C;
-        A.child = null;
+
+        A.child = null; // as requested, all child must point to null
     }
 
 

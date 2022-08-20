@@ -26,30 +26,29 @@ Explanation: It is impossible to split nums into consecutive increasing subseque
 
 public class SplitArrayintoConsecutiveSubsequences {
     public boolean isPossible(int[] arr) {
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         for(int i=0; i<arr.length; i++){
             map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
         }
-        HashMap<Integer, Integer> want = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> want = new HashMap<>();
 
         for(int i=0; i<arr.length; i++){
-            if(map.get(arr[i])==0){
+            if(map.get(arr[i])==0)
                 continue;
-            }
-            // only 4, 5 will go through this logic
-            if(want.getOrDefault(arr[i],0)>0){
+            if (want.getOrDefault(arr[i],0)>0){ // only 4, 5 will go through this logic, and this logic need to be on the top to be operated first in the loop.
                 map.put(arr[i],map.get(arr[i])-1); // 4 or 5 才会在map里减1
                 want.put(arr[i], want.getOrDefault(arr[i],0)-1);
                 want.put(arr[i]+1, want.getOrDefault(arr[i]+1,0)+1);
             }
             // 1,2,3  or 3,4,5 will pass through this logic below
-            else if(map.getOrDefault(arr[i],0)>0 && map.getOrDefault(arr[i]+1,0)>0 && map.getOrDefault(arr[i]+2,0)>0){
-                map.put(arr[i],map.get(arr[i])-1);
-                map.put(arr[i]+1,map.get(arr[i]+1)-1);
-                map.put(arr[i]+2,map.get(arr[i]+2)-1);
+            else if(map.getOrDefault(arr[i],0)>0 && map.getOrDefault(arr[i]+1,0)>0 && map.getOrDefault(arr[i]+2,0)>0) {
+                map.put(arr[i], map.get(arr[i]) - 1);
+                map.put(arr[i] + 1, map.get(arr[i] + 1) - 1);
+                map.put(arr[i] + 2, map.get(arr[i] + 2) - 1);
+                want.put(arr[i] + 3, want.getOrDefault(arr[i] + 3, 0) + 1); // 4, 5
+            }
 
-                want.put(arr[i]+3, want.getOrDefault(arr[i]+3,0)+1); // 4, 5
-            }else{
+            else{
                 return false;
             }
         }

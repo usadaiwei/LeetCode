@@ -10,67 +10,49 @@ import java.util.Stack;
    Output: 7 -> 8 -> 0 -> 7 -> null
  */
 public class AddTwoNumbersII {
+    // 先反转两个LinkedList, 再处理
+    public ListNode addTwoNumbers(ListNode L1, ListNode L2) {
+        if (L1 == null)
+            return L2;
+        if (L2 == null)
+            return L1;
 
+        ListNode pre = new ListNode();
+        ListNode dummy = pre;
+        ListNode l1 = reverse(L1);
+        ListNode l2 = reverse(L2);
 
-    public ListNode addTwoNumbersNormalWay(ListNode l1, ListNode l2) {
-        if(l1 == null){
-            return l2;
-        }
-        if(l2 == null){
-            return l1;
-        }
-        Stack<Integer> s = new Stack<>();
-        Stack<ListNode> s1 = new Stack<>();
-        Stack<ListNode> s2 = new Stack<>();
-        // int carry
-        int c = 0;
-        // add l1, l2 to Stack s1, s2, then they will come out in reverse sequence
-        while(l1 != null){
-            s1.add(l1);
-            l1 = l1.next;
-        }
-        while(l2 != null){
-            s2.add(l2);
-            l2 = l2.next;
-        }
-        // add sum and carry into stack s
-        while(!s1.isEmpty() || !s2.isEmpty() || c != 0){
-            int n1 = 0;
-            if(!s1.isEmpty()){
-                // pop(): shows the element on the top of the Stack and remove it
-                n1 = s1.pop().val;
+        int carry = 0;
+
+        while (l1 != null || l2 != null || carry != 0){
+            int sum = carry;
+            if (l1 != null){
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null){
+                sum += l2.val;
+                l2 = l2.next;
             }
 
-            int n2 = 0;
-            if(!s2.isEmpty()){
-                n2 = s2.pop().val;
-            }
-
-            int result = n1 + n2 + c;
-            // if carry = 1
-            if(result >= 10){
-                c =  result / 10;
-                result %= 10;
-            }else{
-                c = 0;
-            }
-            s.add(result);
+            ListNode node = new ListNode(sum % 10); // key
+            carry = sum / 10;   // key
+            pre.next = node;
+            pre = pre.next;
         }
+        return reverse(dummy.next);
+    }
 
-        ListNode root = null;
-        ListNode node = null;
+    public ListNode reverse(ListNode head){
 
-        while(!s.isEmpty()){
-            int val = s.pop();
-            if(root == null){
-                // keep the root for returning
-                root = new ListNode(val);
-                node = root;
-            }else{
-                node.next = new ListNode(val);
-                node = node.next;
-            }
+        ListNode pre = null;
+        ListNode node = head;
+        while (node != null){
+            ListNode temp = node.next;
+            node.next = pre;
+            pre = node;
+            node = temp;
         }
-        return root;
+        return pre;
     }
 }

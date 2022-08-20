@@ -17,36 +17,51 @@ Input: s = "2[abc]3[cd]ef"
 Output: "abcabccdcdcdef"
  */
 
+import java.util.Stack;
+
 public class DecodeString {
-    int i = 0;
 
     public String decodeString(String s) {
-        return decode(s);
-    }
+        Stack<String> words = new Stack<>();    // for words in []
+        Stack<Integer> nums = new Stack<>();    // for integers
 
-    private String decode(String s){
-        int counter = 0;
-        StringBuilder sb = new StringBuilder();
-        String str = "";
-
-        while (i < s.length()){
+        for (int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
-            i++;
-            if (c == '['){
-                str = decode(s); // recursive
-                for (int j = 0; j < counter; j++){
-                    sb.append(str);
+            if (Character.isDigit(c)){          // 是数字的话
+                int num = c - '0';
+                while (Character.isDigit(s.charAt(i+1))){
+                    num = num * 10 + s.charAt(i+1) - '0';
+                    i++;
                 }
-                counter = 0;
-            } else if (c == ']')
-                break;
-            else if (Character.isAlphabetic(c)){
-                sb.append(c);
-            }
-            else {
-                counter = counter * 10 + c - '0';
+                nums.push(num);
+            } else if (Character.isLetter(c)){  // 是字母的话
+                words.push(c + "");
+            } else if (c == '['){
+                words.push("[");           // '['
+            } else if (c == ']'){               // ']' 意味着 '[' 之后的左右的字母需要重复nums.pop()次
+                String temp = "";
+                while (words.peek() != "["){
+                    temp = words.pop() + temp;
+                }
+                words.pop(); // stack.pop() "["
+
+                int repeat = nums.pop();
+                String inside = "";
+
+                for (int j = 0; j < repeat; j++){
+                    inside += temp;
+                }
+
+                words.push(inside);              // 要push回stack里去, 因为有可能整个整体需要再次重复, 需要继续搜索 ']'
             }
         }
-        return sb.toString();
+
+        String ans = "";
+
+        while (!words.isEmpty()){
+            ans = words.pop() + ans;
+        }
+
+        return ans;
     }
 }

@@ -29,7 +29,7 @@ public class NumberOfDistinctIslands {
                 if (grid[i][j] == 1){
                     StringBuilder sb = new StringBuilder();
                     dfs(i, j, sb, grid, 0, 0);
-                    set.add(sb.toString());
+                    set.add(sb.toString()); // set要在这里add
                 }
             }
         }
@@ -45,8 +45,8 @@ public class NumberOfDistinctIslands {
             int ii = i + dir[0];
             int jj = j + dir[1];
 
-            if (ii >= 0 && jj >= 0 && ii < grid.length && jj < grid[0].length && grid[ii][jj] == 1)
-                dfs(ii, jj, sb, grid, x+dir[0], y+dir[1]);
+            if (ii >= 0 && jj >= 0 && ii < grid.length && jj < grid[0].length && grid[ii][jj] == 1) // ii, jj 是可以等于0的
+                dfs(ii, jj, sb, grid, x+dir[0], y+dir[1]); // x+dir[0]和y+dir[1] 记录了我们走过的路径也就是岛屿形状
         }
     }
 }

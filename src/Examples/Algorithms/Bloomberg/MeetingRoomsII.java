@@ -17,18 +17,16 @@ Output: 1
  */
 public class MeetingRoomsII {
     public int minMeetingRooms(int[][] intervals) {
-        int count = 1;
-        Arrays.sort(intervals, (a, b) -> a[0] - b[0]); // 前面a - 后面b = 从小到大排序； 后面b - 前面a = 从大到小排序
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]); // a - b = 从小到大排序； b - a = 从大到小排序
         PriorityQueue<Integer> q = new PriorityQueue<>();
         q.add(intervals[0][1]);
 
         for (int i = 1; i < intervals.length; i++){
             if (intervals[i][0] >= q.peek())
                 q.poll();
-            else
-                count++;
+
             q.add(intervals[i][1]);
         }
-        return count;
+        return q.size();
     }
 }

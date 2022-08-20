@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class InsertDeleteGetRandom {
-    HashMap<Integer, Integer> map;
-    ArrayList<Integer> list;
-    Random r;
+    HashMap<Integer, Integer> map; // value, list index
+    ArrayList<Integer> list;    // 用list可以从index找value， map只能从value找index， 要一起用互补。
+    Random r; // nextInt(10) 就是 从0-9 取任意一个数
 
     public InsertDeleteGetRandom() {
         map = new HashMap<>();

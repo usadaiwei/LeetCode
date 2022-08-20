@@ -1,4 +1,7 @@
 package Examples.Algorithms.Bloomberg;
+
+import Examples.DataStructures.TreeNode;
+
 /*
 Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
 
